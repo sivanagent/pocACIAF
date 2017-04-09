@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="579d823b-1c7b-4789-a1a4-508570e550b1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>true</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Addition/Addition.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Addition.xsd" MetadataType="Schema" ID="0e94096f-35e8-4b30-a954-25951fdfd5c2" SourceId="1" SourceUrl="http://localhost/Addition/Addition.svc?xsd=xsd0" />
+    <MetadataFile FileName="Addition.wsdl" MetadataType="Wsdl" ID="23883b7d-b2e8-4911-b459-c1319f0bf908" SourceId="1" SourceUrl="http://localhost/Addition/Addition.svc?wsdl" />
+    <MetadataFile FileName="Addition.disco" MetadataType="Disco" ID="dbaf9bb8-ac51-4c99-8c46-e357f63bb99a" SourceId="1" SourceUrl="http://localhost/Addition/Addition.svc?disco" />
+    <MetadataFile FileName="Addition1.xsd" MetadataType="Schema" ID="150a4c19-e75c-47c8-97ff-512cbeae4081" SourceId="1" SourceUrl="http://localhost/Addition/Addition.svc?xsd=xsd1" />
+    <MetadataFile FileName="Addition2.xsd" MetadataType="Schema" ID="4dbaadc6-291a-4960-9d7c-57b40205cca3" SourceId="1" SourceUrl="http://localhost/Addition/Addition.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -9,195 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace pocACIAF.AdditionService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/Addition")]
-    [System.SerializableAttribute()]
-    public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool BoolValueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StringValueField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue {
-            get {
-                return this.BoolValueField;
-            }
-            set {
-                if ((this.BoolValueField.Equals(value) != true)) {
-                    this.BoolValueField = value;
-                    this.RaisePropertyChanged("BoolValue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue {
-            get {
-                return this.StringValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StringValueField, value) != true)) {
-                    this.StringValueField = value;
-                    this.RaisePropertyChanged("StringValue");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MathData", Namespace="http://schemas.datacontract.org/2004/07/Addition")]
-    [System.SerializableAttribute()]
-    public partial class MathData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private float FArg1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private float FArg2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private float FRsltArgField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StrArg1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StrArg2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StrConcatRsltField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public float FArg1 {
-            get {
-                return this.FArg1Field;
-            }
-            set {
-                if ((this.FArg1Field.Equals(value) != true)) {
-                    this.FArg1Field = value;
-                    this.RaisePropertyChanged("FArg1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public float FArg2 {
-            get {
-                return this.FArg2Field;
-            }
-            set {
-                if ((this.FArg2Field.Equals(value) != true)) {
-                    this.FArg2Field = value;
-                    this.RaisePropertyChanged("FArg2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public float FRsltArg {
-            get {
-                return this.FRsltArgField;
-            }
-            set {
-                if ((this.FRsltArgField.Equals(value) != true)) {
-                    this.FRsltArgField = value;
-                    this.RaisePropertyChanged("FRsltArg");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StrArg1 {
-            get {
-                return this.StrArg1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StrArg1Field, value) != true)) {
-                    this.StrArg1Field = value;
-                    this.RaisePropertyChanged("StrArg1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StrArg2 {
-            get {
-                return this.StrArg2Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StrArg2Field, value) != true)) {
-                    this.StrArg2Field = value;
-                    this.RaisePropertyChanged("StrArg2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StrConcatRslt {
-            get {
-                return this.StrConcatRsltField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StrConcatRsltField, value) != true)) {
-                    this.StrConcatRsltField = value;
-                    this.RaisePropertyChanged("StrConcatRslt");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AdditionService.IAddition")]
@@ -220,6 +32,12 @@ namespace pocACIAF.AdditionService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddition/AddUD", ReplyAction="http://tempuri.org/IAddition/AddUDResponse")]
         System.Threading.Tasks.Task<pocACIAF.AdditionService.AddUDResponse> AddUDAsync(pocACIAF.AdditionService.AddUDRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddition/AddArray", ReplyAction="http://tempuri.org/IAddition/AddArrayResponse")]
+        pocACIAF.AdditionService.AddArrayResponse AddArray(pocACIAF.AdditionService.AddArrayRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddition/AddArray", ReplyAction="http://tempuri.org/IAddition/AddArrayResponse")]
+        System.Threading.Tasks.Task<pocACIAF.AdditionService.AddArrayResponse> AddArrayAsync(pocACIAF.AdditionService.AddArrayRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -260,12 +78,12 @@ namespace pocACIAF.AdditionService {
     public partial class GetDataUsingDataContractRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public pocACIAF.AdditionService.CompositeType composite;
+        public Addition.CompositeType composite;
         
         public GetDataUsingDataContractRequest() {
         }
         
-        public GetDataUsingDataContractRequest(pocACIAF.AdditionService.CompositeType composite) {
+        public GetDataUsingDataContractRequest(Addition.CompositeType composite) {
             this.composite = composite;
         }
     }
@@ -276,12 +94,12 @@ namespace pocACIAF.AdditionService {
     public partial class GetDataUsingDataContractResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public pocACIAF.AdditionService.CompositeType GetDataUsingDataContractResult;
+        public Addition.CompositeType GetDataUsingDataContractResult;
         
         public GetDataUsingDataContractResponse() {
         }
         
-        public GetDataUsingDataContractResponse(pocACIAF.AdditionService.CompositeType GetDataUsingDataContractResult) {
+        public GetDataUsingDataContractResponse(Addition.CompositeType GetDataUsingDataContractResult) {
             this.GetDataUsingDataContractResult = GetDataUsingDataContractResult;
         }
     }
@@ -292,12 +110,12 @@ namespace pocACIAF.AdditionService {
     public partial class AddUDRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public pocACIAF.AdditionService.MathData[] md;
+        public Addition.MathData[] md;
         
         public AddUDRequest() {
         }
         
-        public AddUDRequest(pocACIAF.AdditionService.MathData[] md) {
+        public AddUDRequest(Addition.MathData[] md) {
             this.md = md;
         }
     }
@@ -308,17 +126,49 @@ namespace pocACIAF.AdditionService {
     public partial class AddUDResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public pocACIAF.AdditionService.MathData[] AddUDResult;
+        public Addition.MathData[] AddUDResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public pocACIAF.AdditionService.MathData[] md;
+        public Addition.MathData[] md;
         
         public AddUDResponse() {
         }
         
-        public AddUDResponse(pocACIAF.AdditionService.MathData[] AddUDResult, pocACIAF.AdditionService.MathData[] md) {
+        public AddUDResponse(Addition.MathData[] AddUDResult, Addition.MathData[] md) {
             this.AddUDResult = AddUDResult;
             this.md = md;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddArray", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddArrayRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Addition.MathData[] md;
+        
+        public AddArrayRequest() {
+        }
+        
+        public AddArrayRequest(Addition.MathData[] md) {
+            this.md = md;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddArrayResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddArrayResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Addition.MathData[] AddArrayResult;
+        
+        public AddArrayResponse() {
+        }
+        
+        public AddArrayResponse(Addition.MathData[] AddArrayResult) {
+            this.AddArrayResult = AddArrayResult;
         }
     }
     
@@ -371,6 +221,14 @@ namespace pocACIAF.AdditionService {
         
         public System.Threading.Tasks.Task<pocACIAF.AdditionService.AddUDResponse> AddUDAsync(pocACIAF.AdditionService.AddUDRequest request) {
             return base.Channel.AddUDAsync(request);
+        }
+        
+        public pocACIAF.AdditionService.AddArrayResponse AddArray(pocACIAF.AdditionService.AddArrayRequest request) {
+            return base.Channel.AddArray(request);
+        }
+        
+        public System.Threading.Tasks.Task<pocACIAF.AdditionService.AddArrayResponse> AddArrayAsync(pocACIAF.AdditionService.AddArrayRequest request) {
+            return base.Channel.AddArrayAsync(request);
         }
     }
 }

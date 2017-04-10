@@ -35,27 +35,26 @@ namespace pocACIAF
             }
 
             //FArg1
-            //FArg2 
+            //FArg2
             //FRsltArg
             //FRsltArg
             //StrArg1 
             //StrArg2 
             //StrConcatRslt
 
-            //dynamic cmplxTyp_op = new object ();
-            AdditionService.MathData[] cmplxTyp_op;
-            AdditionService.MathData [] cmplxTyp_ip = new AdditionService.MathData [4];
-                        cmplxTyp_ip[0] = new AdditionService.MathData();
-                        cmplxTyp_ip[1] = new AdditionService.MathData();
-                        cmplxTyp_ip[2] = new AdditionService.MathData();
-                        cmplxTyp_ip[3] = new AdditionService.MathData();
-            //            dynamic[] cmplxTyp_ip = new MathData[4];
-            //            cmplxTyp_ip[0] = new MathData();
-            //            cmplxTyp_ip[1] = new MathData();
-            //            cmplxTyp_ip[2] = new MathData();
-            //            cmplxTyp_ip[3] = new MathData();
+            dynamic cmplxTyp_op = new object();
+            //AdditionService.MathData[] cmplxTyp_op;
+            //AdditionService.MathData [] cmplxTyp_ip = new AdditionService.MathData [4];
+            //cmplxTyp_ip[0] = new AdditionService.MathData();
+            //cmplxTyp_ip[1] = new AdditionService.MathData();
+            //cmplxTyp_ip[2] = new AdditionService.MathData();
+            //cmplxTyp_ip[3] = new AdditionService.MathData();
 
-
+            var cmplxTyp_ip = new Addition.MathData[4];
+            cmplxTyp_ip[0] = new Addition.MathData();
+            cmplxTyp_ip[1] = new Addition.MathData();
+            cmplxTyp_ip[2] = new Addition.MathData();
+            cmplxTyp_ip[3] = new Addition.MathData();
 
             cmplxTyp_ip[0].FArg1 = 10;
             cmplxTyp_ip[0].FArg2 = 11;
@@ -67,18 +66,31 @@ namespace pocACIAF
             cmplxTyp_ip[3].FArg1 = 410;
             cmplxTyp_ip[3].FArg2 = 411;
 
-            AdditionService.AdditionClient client = new AdditionService.AdditionClient();
+            //AdditionService.AdditionClient client = new AdditionService.AdditionClient();
             //AdditionService.AddUDRequest rq= 
-            client.AddUD();
+            //client.AddUD();
 
-            cmplxTyp_op = wsInv.InvokeMethod<AdditionService.MathData[] >("AdditionClient", "AddUD", (object []) cmplxTyp_ip );
-            //cmplxTyp_op = wsInv.InvokeMethod<dynamic>("AdditionClient", "GetData", new object[] { 32 });
+            cmplxTyp_op = wsInv.InvokeMethod<dynamic>("AdditionClient", "GetData", new object[] { 32 }); //cmplxTyp_ip);
+
+            var cmplxTyp_op1 = new object();
+            cmplxTyp_op1 = wsInv.InvokeMethod<dynamic>("AdditionClient", "GetDataUsingDataContract1", new object[] { "venkat--" });
+
+            var ip = new Addition.CompositeType
+            {
+                BoolValue = true,
+                StringValue = "venkat--"
+            };
+
+            //Addition.CompositeType cmplxTyp_op2 = new Addition.CompositeType();
+            var cmplxTyp_op3 = wsInv.InvokeMethod<Addition.CompositeType>("AdditionClient", "GetDataUsingDataContract", 
+                ip
+                );
 
             //Console.WriteLine("op is    "+ cmplxTyp_op);
 
-    //      Console.WriteLine("arg1   " + Convert.ToString(cmplxTyp_op[0].FArg1));
-    //      Console.WriteLine("arg2   " + Convert.ToString(cmplxTyp_op[0].FArg2));
-    //      Console.WriteLine("summed arg2   " + Convert.ToString(cmplxTyp_op[0].FRsltArg));
+            //      Console.WriteLine("arg1   " + Convert.ToString(cmplxTyp_op[0].FArg1));
+            //      Console.WriteLine("arg2   " + Convert.ToString(cmplxTyp_op[0].FArg2));
+            //      Console.WriteLine("summed arg2   " + Convert.ToString(cmplxTyp_op[0].FRsltArg));
 
 
         }  // end of launchAsACIAFagent_Click(object sender, EventArgs e)

@@ -1,6 +1,6 @@
 ﻿namespace pocACIAF
-{
-    public class MathData
+{   /***
+    partial class MathData
     {
         public float FArg1 { get; set; }
         public float FArg2 { get; set; }
@@ -10,7 +10,7 @@
         public string StrArg2 { get; set; }
         public string StrConcatRslt { get; set; }
 
-    }
+    }**/
 
 
     partial class pocACIAFagent

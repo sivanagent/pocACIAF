@@ -25,6 +25,12 @@
   <wsdl:message name="IAddition_AddUD_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddUDResponse" />
   </wsdl:message>
+  <wsdl:message name="IAddition_AddArray_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddArray" />
+  </wsdl:message>
+  <wsdl:message name="IAddition_AddArray_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddArrayResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAddition">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IAddition/GetData" message="tns:IAddition_GetData_InputMessage" />
@@ -37,6 +43,10 @@
     <wsdl:operation name="AddUD">
       <wsdl:input wsaw:Action="http://tempuri.org/IAddition/AddUD" message="tns:IAddition_AddUD_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAddition/AddUDResponse" message="tns:IAddition_AddUD_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddArray">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAddition/AddArray" message="tns:IAddition_AddArray_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAddition/AddArrayResponse" message="tns:IAddition_AddArray_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAddition" type="tns:IAddition">
@@ -61,6 +71,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddUD">
       <soap:operation soapAction="http://tempuri.org/IAddition/AddUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddArray">
+      <soap:operation soapAction="http://tempuri.org/IAddition/AddArray" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

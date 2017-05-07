@@ -27,6 +27,12 @@ namespace pocACIAF.AdditionService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddition/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IAddition/GetDataUsingDataContractResponse")]
         System.Threading.Tasks.Task<pocACIAF.AdditionService.GetDataUsingDataContractResponse> GetDataUsingDataContractAsync(pocACIAF.AdditionService.GetDataUsingDataContractRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddition/GetDataUsingDataContract1", ReplyAction="http://tempuri.org/IAddition/GetDataUsingDataContract1Response")]
+        pocACIAF.AdditionService.GetDataUsingDataContract1Response GetDataUsingDataContract1(pocACIAF.AdditionService.GetDataUsingDataContract1Request request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddition/GetDataUsingDataContract1", ReplyAction="http://tempuri.org/IAddition/GetDataUsingDataContract1Response")]
+        System.Threading.Tasks.Task<pocACIAF.AdditionService.GetDataUsingDataContract1Response> GetDataUsingDataContract1Async(pocACIAF.AdditionService.GetDataUsingDataContract1Request request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddition/AddUD", ReplyAction="http://tempuri.org/IAddition/AddUDResponse")]
         pocACIAF.AdditionService.AddUDResponse AddUD(pocACIAF.AdditionService.AddUDRequest request);
         
@@ -106,6 +112,38 @@ namespace pocACIAF.AdditionService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetDataUsingDataContract1", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetDataUsingDataContract1Request {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string composite;
+        
+        public GetDataUsingDataContract1Request() {
+        }
+        
+        public GetDataUsingDataContract1Request(string composite) {
+            this.composite = composite;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetDataUsingDataContract1Response", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetDataUsingDataContract1Response {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string GetDataUsingDataContract1Result;
+        
+        public GetDataUsingDataContract1Response() {
+        }
+        
+        public GetDataUsingDataContract1Response(string GetDataUsingDataContract1Result) {
+            this.GetDataUsingDataContract1Result = GetDataUsingDataContract1Result;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="AddUD", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class AddUDRequest {
         
@@ -128,15 +166,11 @@ namespace pocACIAF.AdditionService {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         public Addition.MathData[] AddUDResult;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Addition.MathData[] md;
-        
         public AddUDResponse() {
         }
         
-        public AddUDResponse(Addition.MathData[] AddUDResult, Addition.MathData[] md) {
+        public AddUDResponse(Addition.MathData[] AddUDResult) {
             this.AddUDResult = AddUDResult;
-            this.md = md;
         }
     }
     
@@ -213,6 +247,14 @@ namespace pocACIAF.AdditionService {
         
         public System.Threading.Tasks.Task<pocACIAF.AdditionService.GetDataUsingDataContractResponse> GetDataUsingDataContractAsync(pocACIAF.AdditionService.GetDataUsingDataContractRequest request) {
             return base.Channel.GetDataUsingDataContractAsync(request);
+        }
+        
+        public pocACIAF.AdditionService.GetDataUsingDataContract1Response GetDataUsingDataContract1(pocACIAF.AdditionService.GetDataUsingDataContract1Request request) {
+            return base.Channel.GetDataUsingDataContract1(request);
+        }
+        
+        public System.Threading.Tasks.Task<pocACIAF.AdditionService.GetDataUsingDataContract1Response> GetDataUsingDataContract1Async(pocACIAF.AdditionService.GetDataUsingDataContract1Request request) {
+            return base.Channel.GetDataUsingDataContract1Async(request);
         }
         
         public pocACIAF.AdditionService.AddUDResponse AddUD(pocACIAF.AdditionService.AddUDRequest request) {

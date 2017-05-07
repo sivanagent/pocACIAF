@@ -7,6 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.CodeDom;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Reflection;
+using System.ServiceModel;
+using System.ServiceModel.Description;
+using System.ServiceModel.Security;
+using System.Text;
+using System.Web.Services.Description;
+using System.Xml;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Runtime.Serialization;
 
 namespace pocACIAF
 {
@@ -17,83 +32,304 @@ namespace pocACIAF
             InitializeComponent();
         }
 
+
+        private void calculateAddition(Addition.MathData[] cmplxTyp_ip)
+        {
+
+            try
+            {
+                Uri mexAddress = new Uri("http://localhost/Addition/Addition.svc?wsdl");
+                MetadataExchangeClientMode mexMode = MetadataExchangeClientMode.HttpGet;
+                string contractName = "IAddition";
+                string operationName = "GetDataUsingDataContract";
+                string operationName1 = "AddArray";
+
+
+                Addition.CompositeType ip = new Addition.CompositeType
+                {
+                    BoolValue = true,
+                    StringValue = "---test string--"
+                };
+
+                object[] operationParameters = new object[] { ip };
+                object[] operationParameters1 = new object[] { cmplxTyp_ip };
+
+                MetadataExchangeClient mexClient = new MetadataExchangeClient(mexAddress, mexMode);
+                mexClient.ResolveMetadataReferences = true;
+                MetadataSet metaSet = mexClient.GetMetadata();
+
+                WsdlImporter importer = new WsdlImporter(metaSet);
+                //BEGIN INSERT
+                XsdDataContractImporter xsd = new XsdDataContractImporter();
+                xsd.Options = new ImportOptions();
+                xsd.Options.ImportXmlType = true;
+                xsd.Options.GenerateSerializable = true;
+                //xsd.Options.ReferencedTypes.Add(typeof(KeyValuePair<string, string>));
+                //xsd.Options.ReferencedTypes.Add(typeof(System.Collections.Generic.List<KeyValuePair<string, string>>));
+
+                xsd.Options.ReferencedTypes.Add(typeof(Addition.CompositeType));
+                xsd.Options.ReferencedTypes.Add(typeof(Addition.MathData));
+                xsd.Options.ReferencedTypes.Add(typeof(System.Collections.Generic.List<Addition.MathData>));
+
+
+                importer.State.Add(typeof(XsdDataContractImporter), xsd);
+                //END INSERT
+
+
+                Collection<ContractDescription> contracts = importer.ImportAllContracts();
+                ServiceEndpointCollection allEndpoints = importer.ImportAllEndpoints();
+
+                ServiceContractGenerator generator = new ServiceContractGenerator();
+                var endpointsForContracts = new Dictionary<string, IEnumerable<ServiceEndpoint>>();
+
+                foreach (ContractDescription contract in contracts)
+                {
+                    generator.GenerateServiceContractType(contract);
+                    endpointsForContracts[contract.Name] = allEndpoints.Where(
+                        se => se.Contract.Name == contract.Name).ToList();
+                }
+
+                if (generator.Errors.Count != 0)
+                    throw new Exception("There were errors during code compilation.");
+
+                CodeGeneratorOptions options = new CodeGeneratorOptions();
+                options.BracingStyle = "C";
+                CodeDomProvider codeDomProvider = CodeDomProvider.CreateProvider("C#");
+
+                CompilerParameters compilerParameters = new CompilerParameters(
+                    new string[] {
+                "System.dll", "System.ServiceModel.dll",
+                "System.Runtime.Serialization.dll" });
+                compilerParameters.GenerateInMemory = true;
+
+                CompilerResults results = codeDomProvider.CompileAssemblyFromDom(
+                    compilerParameters, generator.TargetCompileUnit);
+
+                if (results.Errors.Count > 0)
+                {
+                    throw new Exception("There were errors during generated code compilation");
+                }
+                else
+                {
+                    Type clientProxyType = results.CompiledAssembly.GetTypes().First(
+                        t => t.IsClass &&
+                            t.GetInterface(contractName) != null &&
+                            t.GetInterface(typeof(ICommunicationObject).Name) != null);
+
+                    ServiceEndpoint se = endpointsForContracts[contractName].First();
+
+                    object instance = results.CompiledAssembly.CreateInstance(
+                        clientProxyType.Name,
+                        false,
+                        System.Reflection.BindingFlags.CreateInstance,
+                        null,
+                        new object[] { se.Binding, se.Address },
+                        CultureInfo.CurrentCulture, null);
+
+
+                    var methodInfo = instance.GetType().GetMethod(operationName);
+                    var methodInfo1 = instance.GetType().GetMethod(operationName1);
+
+                    object retVal = methodInfo.Invoke(instance, BindingFlags.InvokeMethod, null, operationParameters, null);
+                    dynamic retVal1 = methodInfo1.Invoke(instance, BindingFlags.InvokeMethod, null, operationParameters1, null);
+                    Console.WriteLine(retVal.ToString());
+
+                    for (int x = 0; x < cmplxTyp_ip.Length; x++)
+                    {
+                        Console.WriteLine(" --addition output RECORD {0 } ----", x);
+                        Console.WriteLine(" FArg1+farg2 : {0 } ", retVal1[x].FRsltArg);
+                        Console.WriteLine(" strFArg1+arg2 : {0 }", retVal1[x].StrConcatRslt);
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            } //end of mex binding try block
+
+
+        }//end addtion function
+
+
+        private void calculateSubtraction(SubtractionService.MathData[] cmplxTyp_ip)
+        {
+            try
+            {
+                Uri mexAddress = new Uri("http://localhost/Subtraction/Subtraction.svc?wsdl");
+                MetadataExchangeClientMode mexMode = MetadataExchangeClientMode.HttpGet;
+                string contractName = "ISubtraction";
+                string operationName1 = "SubtractArray";
+
+                object[] operationParameters1 = new object[] { cmplxTyp_ip };
+
+                MetadataExchangeClient mexClient = new MetadataExchangeClient(mexAddress, mexMode);
+                mexClient.ResolveMetadataReferences = true;
+                MetadataSet metaSet = mexClient.GetMetadata();
+
+                WsdlImporter importer = new WsdlImporter(metaSet);
+                //BEGIN INSERT
+                XsdDataContractImporter xsd = new XsdDataContractImporter();
+                xsd.Options = new ImportOptions();
+                xsd.Options.ImportXmlType = true;
+                xsd.Options.GenerateSerializable = true;
+                //xsd.Options.ReferencedTypes.Add(typeof(KeyValuePair<string, string>));
+                //xsd.Options.ReferencedTypes.Add(typeof(System.Collections.Generic.List<KeyValuePair<string, string>>));
+
+                xsd.Options.ReferencedTypes.Add(typeof(SubtractionService.CompositeType));
+                xsd.Options.ReferencedTypes.Add(typeof(SubtractionService.MathData));
+                xsd.Options.ReferencedTypes.Add(typeof(System.Collections.Generic.List<SubtractionService.MathData>));
+
+
+                importer.State.Add(typeof(XsdDataContractImporter), xsd);
+                //END INSERT
+
+                Collection<ContractDescription> contracts = importer.ImportAllContracts();
+                ServiceEndpointCollection allEndpoints = importer.ImportAllEndpoints();
+
+                ServiceContractGenerator generator = new ServiceContractGenerator();
+                var endpointsForContracts = new Dictionary<string, IEnumerable<ServiceEndpoint>>();
+
+                foreach (ContractDescription contract in contracts)
+                {
+                    generator.GenerateServiceContractType(contract);
+                    endpointsForContracts[contract.Name] = allEndpoints.Where(
+                        se => se.Contract.Name == contract.Name).ToList();
+                }
+
+                if (generator.Errors.Count != 0)
+                    throw new Exception("There were errors during code compilation.");
+
+                CodeGeneratorOptions options = new CodeGeneratorOptions();
+                options.BracingStyle = "C";
+                CodeDomProvider codeDomProvider = CodeDomProvider.CreateProvider("C#");
+
+                CompilerParameters compilerParameters = new CompilerParameters(
+                    new string[] {
+                "System.dll", "System.ServiceModel.dll",
+                "System.Runtime.Serialization.dll" });
+                compilerParameters.GenerateInMemory = true;
+
+                CompilerResults results = codeDomProvider.CompileAssemblyFromDom(
+                    compilerParameters, generator.TargetCompileUnit);
+
+                if (results.Errors.Count > 0)
+                {
+                    throw new Exception("There were errors during generated code compilation");
+                }
+                else
+                {
+                    Type clientProxyType = results.CompiledAssembly.GetTypes().First(
+                        t => t.IsClass &&
+                            t.GetInterface(contractName) != null &&
+                            t.GetInterface(typeof(ICommunicationObject).Name) != null);
+
+                    ServiceEndpoint se = endpointsForContracts[contractName].First();
+
+                    object instance = results.CompiledAssembly.CreateInstance(
+                        clientProxyType.Name,
+                        false,
+                        System.Reflection.BindingFlags.CreateInstance,
+                        null,
+                        new object[] { se.Binding, se.Address },
+                        CultureInfo.CurrentCulture, null);
+
+                    var methodInfo1 = instance.GetType().GetMethod(operationName1);
+
+                    dynamic retVal1 = methodInfo1.Invoke(instance, BindingFlags.InvokeMethod, null, operationParameters1, null);
+
+                    for (int x = 0; x < cmplxTyp_ip.Length; x++)
+                    {
+                        Console.WriteLine(" --Subtraction output RECORD {0 } ----", x);
+                        Console.WriteLine(" FArg1+farg2 : {0 } ", retVal1[x].FRsltArg);
+                        Console.WriteLine(" strFArg1+arg2 : {0 }", retVal1[x].StrConcatRslt);
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            } //end try block...
+
+
+        }//end subtraction..
+
+
         private void launchAsACIAFagent_Click(object sender, EventArgs e)
         {
-            //launchAsACIAFagent
-            //http://localhost/Addition/Addition.svc?wsdl
 
-            string uriLink = "http://" + "localhost" + "/Addition/Addition.svc";
-            System.Uri uri = new Uri(uriLink);
-            WebServiceInvoker wsInv = new WebServiceInvoker(uri);
-
-            List<string> mthdList = new List<string>();
-            mthdList = wsInv.EnumerateServiceMethods("AdditionClient");
-
-            for (int i = 0; i < mthdList.Count; i++)
+            int loopCounter;
+            Console.WriteLine("Give number of objects to send to server .... ");
+            try
             {
-                Console.WriteLine(mthdList[i]);
+                loopCounter = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Sending this -- {0} --many Objects ", loopCounter);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("user gave wrong number of objects to send to server");
+                throw;
+            }
+            Addition.MathData[] cmplxTyp_ip = new Addition.MathData[loopCounter];
+
+            for (int x = 0; x < loopCounter; x++)
+            {
+                cmplxTyp_ip[x] = (new Addition.MathData());
             }
 
-            //FArg1
-            //FArg2
-            //FRsltArg
-            //FRsltArg
-            //StrArg1 
-            //StrArg2 
-            //StrConcatRslt
+            Console.WriteLine("****************START INPUT DATA***************************");
 
-            dynamic cmplxTyp_op = new object();
-            //AdditionService.MathData[] cmplxTyp_op;
-            //AdditionService.MathData [] cmplxTyp_ip = new AdditionService.MathData [4];
-            //cmplxTyp_ip[0] = new AdditionService.MathData();
-            //cmplxTyp_ip[1] = new AdditionService.MathData();
-            //cmplxTyp_ip[2] = new AdditionService.MathData();
-            //cmplxTyp_ip[3] = new AdditionService.MathData();
-
-            var cmplxTyp_ip = new Addition.MathData[4];
-            cmplxTyp_ip[0] = new Addition.MathData();
-            cmplxTyp_ip[1] = new Addition.MathData();
-            cmplxTyp_ip[2] = new Addition.MathData();
-            cmplxTyp_ip[3] = new Addition.MathData();
-
-            cmplxTyp_ip[0].FArg1 = 10;
-            cmplxTyp_ip[0].FArg2 = 11;
-
-            cmplxTyp_ip[1].FArg1 = 210;
-            cmplxTyp_ip[1].FArg2 = 211;
-            cmplxTyp_ip[2].FArg1 = 310;
-            cmplxTyp_ip[2].FArg2 = 311;
-            cmplxTyp_ip[3].FArg1 = 410;
-            cmplxTyp_ip[3].FArg2 = 411;
-
-            //AdditionService.AdditionClient client = new AdditionService.AdditionClient();
-            //AdditionService.AddUDRequest rq= 
-            //client.AddUD();
-
-            cmplxTyp_op = wsInv.InvokeMethod<dynamic>("AdditionClient", "GetData", new object[] { 32 }); //cmplxTyp_ip);
-
-            var cmplxTyp_op1 = new object();
-            cmplxTyp_op1 = wsInv.InvokeMethod<dynamic>("AdditionClient", "GetDataUsingDataContract1", new object[] { "venkat--" });
-
-            var ip = new Addition.CompositeType
+            for (int x = 0; x < loopCounter; x++)
             {
-                BoolValue = true,
-                StringValue = "venkat--"
-            };
+                cmplxTyp_ip[x].FArg1 = x * 2;
+                cmplxTyp_ip[x].FArg2 = x * 3;
+                cmplxTyp_ip[x].StrArg1 = "StrArg..1.." + Convert.ToString(cmplxTyp_ip[x].FArg1);
+                cmplxTyp_ip[x].StrArg2 = "StrArg..2.." + Convert.ToString(cmplxTyp_ip[x].FArg2);
 
-            //Addition.CompositeType cmplxTyp_op2 = new Addition.CompositeType();
-            var cmplxTyp_op3 = wsInv.InvokeMethod<Addition.CompositeType>("AdditionClient", "GetDataUsingDataContract", 
-                ip
-                );
+                Console.WriteLine(" --RECORD {0 } ----", x);
+                Console.WriteLine(" FArg1 : {0 }", cmplxTyp_ip[x].FArg1);
+                Console.WriteLine(" FArg2 : {0 }", cmplxTyp_ip[x].FArg2);
+                Console.WriteLine(" strFArg1 : {0 }", cmplxTyp_ip[x].StrArg1);
+                Console.WriteLine(" strFArg2 : {0 }", cmplxTyp_ip[x].StrArg2);
+            }
 
-            //Console.WriteLine("op is    "+ cmplxTyp_op);
+            Console.WriteLine("***************END INPUT DATA***************************");
 
-            //      Console.WriteLine("arg1   " + Convert.ToString(cmplxTyp_op[0].FArg1));
-            //      Console.WriteLine("arg2   " + Convert.ToString(cmplxTyp_op[0].FArg2));
-            //      Console.WriteLine("summed arg2   " + Convert.ToString(cmplxTyp_op[0].FRsltArg));
+            calculateAddition(cmplxTyp_ip);
 
+
+            SubtractionService.MathData[] cmplxTyp_ip1 = new SubtractionService.MathData[loopCounter];
+
+            for (int x = 0; x < loopCounter; x++)
+            {
+                cmplxTyp_ip1[x] = (new SubtractionService.MathData());
+            }
+
+            Console.WriteLine("****************START INPUT DATA*: SUBTRACTION --**************************");
+
+            for (int x = 0; x < loopCounter; x++)
+            {
+                cmplxTyp_ip1[x].FArg1 = x * 2;
+                cmplxTyp_ip1[x].FArg2 = x * 3;
+                cmplxTyp_ip1[x].StrArg1 = "StrArg..1.." + Convert.ToString(cmplxTyp_ip1[x].FArg1);
+                cmplxTyp_ip1[x].StrArg2 = "StrArg..2.." + Convert.ToString(cmplxTyp_ip1[x].FArg2);
+
+                Console.WriteLine(" --RECORD {0 } ----", x);
+                Console.WriteLine(" FArg1 : {0 }", cmplxTyp_ip1[x].FArg1);
+                Console.WriteLine(" FArg2 : {0 }", cmplxTyp_ip1[x].FArg2);
+                Console.WriteLine(" strFArg1 : {0 }", cmplxTyp_ip1[x].StrArg1);
+                Console.WriteLine(" strFArg2 : {0 }", cmplxTyp_ip1[x].StrArg2);
+            }
+
+
+            calculateSubtraction(cmplxTyp_ip1);
 
         }  // end of launchAsACIAFagent_Click(object sender, EventArgs e)
-    }
-}
+    } //end of class...
+} //end of namespace...
 

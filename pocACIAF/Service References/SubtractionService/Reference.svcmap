@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c3fd85be-6fed-4463-bd0e-7d3a29f1d7c6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Subtraction/Subtraction.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Subtraction.xsd" MetadataType="Schema" ID="9639d13f-508e-4637-a6a7-c5a6f916d857" SourceId="1" SourceUrl="http://localhost/Subtraction/Subtraction.svc?xsd=xsd0" />
+    <MetadataFile FileName="Subtraction1.xsd" MetadataType="Schema" ID="945a2977-d2be-4076-a9d0-2f5428233023" SourceId="1" SourceUrl="http://localhost/Subtraction/Subtraction.svc?xsd=xsd1" />
+    <MetadataFile FileName="Subtraction.wsdl" MetadataType="Wsdl" ID="26f1f749-1d5f-493e-b151-114cef3a2139" SourceId="1" SourceUrl="http://localhost/Subtraction/Subtraction.svc?wsdl" />
+    <MetadataFile FileName="Subtraction2.xsd" MetadataType="Schema" ID="e0d5b4a9-2b84-471d-a1e1-a0ac41c320aa" SourceId="1" SourceUrl="http://localhost/Subtraction/Subtraction.svc?xsd=xsd2" />
+    <MetadataFile FileName="Subtraction.disco" MetadataType="Disco" ID="3860175b-1811-443b-ad57-8597c2f8558d" SourceId="1" SourceUrl="http://localhost/Subtraction/Subtraction.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

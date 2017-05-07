@@ -29,6 +29,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetDataUsingDataContract1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="composite" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataUsingDataContract1Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDataUsingDataContract1Result" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddUD">
     <xs:complexType>
       <xs:sequence>
@@ -40,21 +54,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Addition" minOccurs="0" name="AddUDResult" nillable="true" type="q4:ArrayOfMathData" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Addition" minOccurs="0" name="md" nillable="true" type="q5:ArrayOfMathData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddArray">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Addition" minOccurs="0" name="md" nillable="true" type="q6:ArrayOfMathData" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Addition" minOccurs="0" name="md" nillable="true" type="q5:ArrayOfMathData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddArrayResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Addition" minOccurs="0" name="AddArrayResult" nillable="true" type="q7:ArrayOfMathData" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Addition" minOccurs="0" name="AddArrayResult" nillable="true" type="q6:ArrayOfMathData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

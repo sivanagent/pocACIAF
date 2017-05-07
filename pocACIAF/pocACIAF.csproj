@@ -85,6 +85,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\SubtractionService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="WebServiceInvoker.cs" />
     <EmbeddedResource Include="pocACIAFagent.resx">
       <DependentUpon>pocACIAFagent.cs</DependentUpon>
@@ -127,8 +132,27 @@
     <None Include="Service References\AdditionService\pocACIAF.AdditionService.GetDataResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\AdditionService\pocACIAF.AdditionService.GetDataUsingDataContract1Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AdditionService\pocACIAF.AdditionService.GetDataUsingDataContractResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SubtractionService\pocACIAF.SubtractionService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SubtractionService\pocACIAF.SubtractionService.MathData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SubtractionService\Subtraction.wsdl" />
+    <None Include="Service References\SubtractionService\Subtraction.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SubtractionService\Subtraction1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SubtractionService\Subtraction2.xsd">
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AdditionService\" />
+    <WCFMetadataStorage Include="Service References\SubtractionService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AdditionService\Addition.disco" />
@@ -166,6 +191,21 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SubtractionService\Subtraction.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SubtractionService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SubtractionService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SubtractionService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

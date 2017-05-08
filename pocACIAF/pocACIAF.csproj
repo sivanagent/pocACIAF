@@ -54,6 +54,15 @@
     <Reference Include="Addition">
       <HintPath>C:\inetpub\wwwroot\MyApp\bin\Addition.dll</HintPath>
     </Reference>
+    <Reference Include="Multiplication">
+      <HintPath>C:\inetpub\wwwroot\MyApp\bin\Multiplication.dll</HintPath>
+    </Reference>
+    <Reference Include="serviceACIAF">
+      <HintPath>C:\inetpub\wwwroot\MyApp\bin\serviceACIAF.dll</HintPath>
+    </Reference>
+    <Reference Include="Subtraction">
+      <HintPath>C:\inetpub\wwwroot\MyApp\bin\Subtraction.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />

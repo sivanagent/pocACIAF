@@ -30,8 +30,109 @@ namespace pocACIAF
         public pocMATHTUTOR_ACIAF_agent()
         {
             InitializeComponent();
+
+            additionServiceURI = new Uri("http://localhost/Addition/Addition.svc?wsdl");
+            subtractServiceURI = new Uri("http://localhost/Subtraction/Subtraction.svc?wsdl");
+            multiplicationServiceURI = new Uri("http://localhost/Multiplication/Multiplication.svc?wsdl");
+
+            readUserInputToAgent();
         }
-        
+
+        private void readUserInputToAgent()
+        {
+            int loopCounter;
+            Console.WriteLine("Give number of objects to send to server .... ");
+            try
+            {
+                loopCounter = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Sending this -- {0} --many Objects ", loopCounter);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("user gave wrong number of objects to send to server");
+                throw;
+            }
+
+            //allocate memory for Service Invocation memorystructures..
+            cmplxTyp_ip_toAdditionService = new Addition.MathData[loopCounter];
+            cmplxTyp_ip_to_SUBTRACTIONservice = new SubtractionService.MathData[loopCounter];
+            cmplxTyp_ip_to_MULTIPLICATIONservice = new Multiplication.MathData[loopCounter];
+
+            for (int x = 0; x < loopCounter; x++)
+            {
+                cmplxTyp_ip_toAdditionService[x] = (new Addition.MathData());
+            }
+
+            Console.WriteLine("****************START INPUT DATA: Addition service***************************");
+
+            for (int x = 0; x < loopCounter; x++)
+            {
+                cmplxTyp_ip_toAdditionService[x].FArg1 = x * 2;
+                cmplxTyp_ip_toAdditionService[x].FArg2 = x * 3;
+                cmplxTyp_ip_toAdditionService[x].StrArg1 = "StrArg..1.." + Convert.ToString(cmplxTyp_ip_toAdditionService[x].FArg1);
+                cmplxTyp_ip_toAdditionService[x].StrArg2 = "StrArg..2.." + Convert.ToString(cmplxTyp_ip_toAdditionService[x].FArg2);
+
+                Console.WriteLine(" --RECORD {0 } ----", x);
+                Console.WriteLine(" FArg1 : {0 }", cmplxTyp_ip_toAdditionService[x].FArg1);
+                Console.WriteLine(" FArg2 : {0 }", cmplxTyp_ip_toAdditionService[x].FArg2);
+                Console.WriteLine(" strFArg1 : {0 }", cmplxTyp_ip_toAdditionService[x].StrArg1);
+                Console.WriteLine(" strFArg2 : {0 }", cmplxTyp_ip_toAdditionService[x].StrArg2);
+            }
+
+            Console.WriteLine("***************END INPUT DATA: Addition service***************************");
+
+
+            for (int x = 0; x < loopCounter; x++)
+            {
+                cmplxTyp_ip_to_SUBTRACTIONservice[x] = (new SubtractionService.MathData());
+            }
+
+            Console.WriteLine("****************START INPUT DATA*: SUBTRACTION --**************************");
+
+            for (int x = 0; x < loopCounter; x++)
+            {
+                cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg1 = x * 2;
+                cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg2 = x * 3;
+                cmplxTyp_ip_to_SUBTRACTIONservice[x].StrArg1 = "StrArg..1.." + Convert.ToString(cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg1);
+                cmplxTyp_ip_to_SUBTRACTIONservice[x].StrArg2 = "StrArg..2.." + Convert.ToString(cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg2);
+
+                Console.WriteLine(" --RECORD {0 } ----", x);
+                Console.WriteLine(" FArg1 : {0 }", cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg1);
+                Console.WriteLine(" FArg2 : {0 }", cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg2);
+                Console.WriteLine(" strFArg1 : {0 }", cmplxTyp_ip_to_SUBTRACTIONservice[x].StrArg1);
+                Console.WriteLine(" strFArg2 : {0 }", cmplxTyp_ip_to_SUBTRACTIONservice[x].StrArg2);
+            }
+            Console.WriteLine("****************End INPUT DATA*: SUBTRACTION service--**************************");
+
+
+
+            //read data to feed into multiplication service..
+            for (int x = 0; x < loopCounter; x++)
+            {
+                cmplxTyp_ip_to_MULTIPLICATIONservice[x] = (new Multiplication.MathData());
+            }
+
+            Console.WriteLine("****************START INPUT DATA: Multiplication service***************************");
+
+            for (int x = 0; x < loopCounter; x++)
+            {
+                cmplxTyp_ip_to_MULTIPLICATIONservice[x].FArg1 = x * 3;
+                cmplxTyp_ip_to_MULTIPLICATIONservice[x].FArg2 = x * 4;
+                cmplxTyp_ip_to_MULTIPLICATIONservice[x].StrArg1 = "StrArg..1.." + Convert.ToString(cmplxTyp_ip_to_MULTIPLICATIONservice[x].FArg1);
+                cmplxTyp_ip_to_MULTIPLICATIONservice[x].StrArg2 = "StrArg..2.." + Convert.ToString(cmplxTyp_ip_to_MULTIPLICATIONservice[x].FArg2);
+
+                Console.WriteLine(" --RECORD {0 } ----", x);
+                Console.WriteLine(" FArg1 : {0 }", cmplxTyp_ip_to_MULTIPLICATIONservice[x].FArg1);
+                Console.WriteLine(" FArg2 : {0 }", cmplxTyp_ip_to_MULTIPLICATIONservice[x].FArg2);
+                Console.WriteLine(" strFArg1 : {0 }", cmplxTyp_ip_to_MULTIPLICATIONservice[x].StrArg1);
+                Console.WriteLine(" strFArg2 : {0 }", cmplxTyp_ip_to_MULTIPLICATIONservice[x].StrArg2);
+            }
+
+            Console.WriteLine("***************END INPUT DATA: Multiplication service***************************");
+
+        } //end of read user IP data...
+
+
         private void calculateAddition(Uri additionServiceURI , Addition.MathData[] cmplxTyp_ip)
         {
             try
@@ -146,7 +247,7 @@ namespace pocACIAF
             } //end of mex binding try block
 
 
-        }//end addtion function
+       }    //end addtion webservice Invoke function
 
 
         private void calculateSubtraction(Uri subtractServiceURI, SubtractionService.MathData[] cmplxTyp_ip)
@@ -250,7 +351,7 @@ namespace pocACIAF
                 Console.WriteLine(ex.Message);
 
             } //end try block...
-        }//end subtraction..
+        }//end subtraction webservice Invoke function..
 
         private void calculateMultiplication(Uri multiplicationServiceURI, Multiplication.MathData[] cmplxTyp_ip)
         {
@@ -367,86 +468,26 @@ namespace pocACIAF
 
             } //end of mex binding try block
 
-        } //end of MULTIPLICATION FUNCTION...
+        } //end of MULTIPLICATION webservice Invoke function...
 
-        private void readUserInputToAgent()
-        {
-            int loopCounter;
-            Console.WriteLine("Give number of objects to send to server .... ");
-            try
-            {
-                loopCounter = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Sending this -- {0} --many Objects ", loopCounter);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("user gave wrong number of objects to send to server");
-                throw;
-            }
-            Addition.MathData[] cmplxTyp_ip_toAdditionService = new Addition.MathData[loopCounter];
-
-            for (int x = 0; x < loopCounter; x++)
-            {
-                cmplxTyp_ip_toAdditionService[x] = (new Addition.MathData());
-            }
-
-            Console.WriteLine("****************START INPUT DATA: Addition service***************************");
-
-            for (int x = 0; x < loopCounter; x++)
-            {
-                cmplxTyp_ip_toAdditionService[x].FArg1 = x * 2;
-                cmplxTyp_ip_toAdditionService[x].FArg2 = x * 3;
-                cmplxTyp_ip_toAdditionService[x].StrArg1 = "StrArg..1.." + Convert.ToString(cmplxTyp_ip_toAdditionService[x].FArg1);
-                cmplxTyp_ip_toAdditionService[x].StrArg2 = "StrArg..2.." + Convert.ToString(cmplxTyp_ip_toAdditionService[x].FArg2);
-
-                Console.WriteLine(" --RECORD {0 } ----", x);
-                Console.WriteLine(" FArg1 : {0 }", cmplxTyp_ip_toAdditionService[x].FArg1);
-                Console.WriteLine(" FArg2 : {0 }", cmplxTyp_ip_toAdditionService[x].FArg2);
-                Console.WriteLine(" strFArg1 : {0 }", cmplxTyp_ip_toAdditionService[x].StrArg1);
-                Console.WriteLine(" strFArg2 : {0 }", cmplxTyp_ip_toAdditionService[x].StrArg2);
-            }
-
-            Console.WriteLine("***************END INPUT DATA: Addition service***************************");
-
-            SubtractionService.MathData[] cmplxTyp_ip_to_SUBTRACTIONservice = new SubtractionService.MathData[loopCounter];
-
-            for (int x = 0; x < loopCounter; x++)
-            {
-                cmplxTyp_ip_to_SUBTRACTIONservice[x] = (new SubtractionService.MathData());
-            }
-
-            Console.WriteLine("****************START INPUT DATA*: SUBTRACTION --**************************");
-
-            for (int x = 0; x < loopCounter; x++)
-            {
-                cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg1 = x * 2;
-                cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg2 = x * 3;
-                cmplxTyp_ip_to_SUBTRACTIONservice[x].StrArg1 = "StrArg..1.." + Convert.ToString(cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg1);
-                cmplxTyp_ip_to_SUBTRACTIONservice[x].StrArg2 = "StrArg..2.." + Convert.ToString(cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg2);
-
-                Console.WriteLine(" --RECORD {0 } ----", x);
-                Console.WriteLine(" FArg1 : {0 }", cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg1);
-                Console.WriteLine(" FArg2 : {0 }", cmplxTyp_ip_to_SUBTRACTIONservice[x].FArg2);
-                Console.WriteLine(" strFArg1 : {0 }", cmplxTyp_ip_to_SUBTRACTIONservice[x].StrArg1);
-                Console.WriteLine(" strFArg2 : {0 }", cmplxTyp_ip_to_SUBTRACTIONservice[x].StrArg2);
-            }
-            Console.WriteLine("****************End INPUT DATA*: SUBTRACTION service--**************************");
-
-
-        }
 
 
 
         private void launchAsACIAFagent_Click(object sender, EventArgs e)
         {
-            Uri additionServiceURI = new Uri("http://localhost/Addition/Addition.svc?wsdl");
-            Uri subtractServiceURI = new Uri("http://localhost/Subtraction/Subtraction.svc?wsdl");
-            Uri multiplicationServiceURI = new Uri("http://localhost/Multiplication/Multiplication.svc?wsdl");
 
             calculateAddition(additionServiceURI, cmplxTyp_ip_toAdditionService);
             calculateSubtraction(subtractServiceURI, cmplxTyp_ip_to_SUBTRACTIONservice);
             calculateMultiplication(multiplicationServiceURI, cmplxTyp_ip_to_MULTIPLICATIONservice);
         }  // end of launchAsACIAFagent_Click(object sender, EventArgs e)
+
+
+        private Uri additionServiceURI = new Uri("http://localhost/Addition/Addition.svc?wsdl");
+        private Uri subtractServiceURI = new Uri("http://localhost/Subtraction/Subtraction.svc?wsdl");
+        private Uri multiplicationServiceURI = new Uri("http://localhost/Multiplication/Multiplication.svc?wsdl");
+        private Addition.MathData[] cmplxTyp_ip_toAdditionService;
+        private SubtractionService.MathData[] cmplxTyp_ip_to_SUBTRACTIONservice;
+        private Multiplication.MathData[]  cmplxTyp_ip_to_MULTIPLICATIONservice;
 
     } //end of class...
 

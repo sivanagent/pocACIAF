@@ -16,7 +16,7 @@ namespace pocACIAF
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new pocACIAFagent());
+            Application.Run(new pocMATHTUTOR_ACIAF_agent());
         }
     }
 }

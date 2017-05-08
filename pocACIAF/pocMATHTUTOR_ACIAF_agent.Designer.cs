@@ -13,7 +13,7 @@
     }**/
 
 
-    partial class pocACIAFagent
+    partial class pocMATHTUTOR_ACIAF_agent
     {
         /// <summary>
         /// Required designer variable.
@@ -54,13 +54,13 @@
             this.launchAsACIAFagent.UseVisualStyleBackColor = true;
             this.launchAsACIAFagent.Click += new System.EventHandler(this.launchAsACIAFagent_Click);
             // 
-            // pocACIAFagent
+            // pocMATHTUTOR_ACIAF_agent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.launchAsACIAFagent);
-            this.Name = "pocACIAFagent";
+            this.Name = "pocMATHTUTOR_ACIAF_agent";
             this.Text = "ACIAFagent";
             this.ResumeLayout(false);
 
